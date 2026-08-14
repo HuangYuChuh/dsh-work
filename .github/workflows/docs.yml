@@ -1,0 +1,27 @@
+name: Documentation
+
+on:
+  push:
+    paths:
+      - '**.md'
+      - 'llms.txt'
+      - 'scripts/test-docs.ps1'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - '**.md'
+      - 'llms.txt'
+      - 'scripts/test-docs.ps1'
+      - '.github/workflows/docs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Markdown links
+        shell: pwsh
+        run: ./scripts/test-docs.ps1
