@@ -1,0 +1,17 @@
+{
+  "name": "@dsh-work/profile-work",
+  "private": true,
+  "description": "DSH Work's local-first office profile",
+  "dependencies": {
+    "@huiliyi37/dsh-office": "0.1.6"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "@deepseek-ai/dsh-base",
+        "@deepseek-ai/dsh-web-app",
+        "@huiliyi37/dsh-office"
+      ]
+    }
+  }
+}

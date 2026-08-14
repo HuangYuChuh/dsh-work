@@ -32,6 +32,30 @@ The technical planes remain separate:
 | DSH plugin | A replaceable capability | DOCX parser, XLSX generator, citation recorder |
 | DSH Work product layer | Office language and interaction | Project, source, deliverable, reviewer, and approval views |
 
+## Repository integration
+
+The upstream runtime is tracked as a Git submodule at
+`packages/deepseek-harness` and pinned to a reviewed commit. This keeps DSH's
+large plugin graph in its own repository while making the exact runtime
+version reproducible for a DSH Work checkout.
+
+The product-owned runtime home is `.dsh/`. Its `profiles/work/package.json`
+composes the upstream `@deepseek-ai/dsh-base` and
+`@deepseek-ai/dsh-web-app` bundles plus the first Office bundle,
+`@huiliyi37/dsh-office`. The profile's `cordis.patch.yml` inserts that bundle's
+tool row, making the extension explicit and removable. `scripts/dsh-work.ps1`
+sets `DSH_HOME`, selects that profile, and forwards Web arguments to the
+upstream launcher.
+Generated sessions, storage, profile roots, and module links stay ignored;
+the profile manifest and patch layer are the versioned product contract.
+
+This composition gives us a real browser shell, model settings, workspaces,
+sessions, approvals, workflows, subagents, deliverable UI, and Office file
+tools from DSH plus the external plugin. The plugin currently provides bounded
+`xlsx_*`, `pdf_*`, `pptx_*`, and `docx_*` operations; citation provenance,
+review UX, and approval-aware export still belong to the DSH Work product layer
+and must be added with focused tests and sample office fixtures.
+
 ## Required product capabilities
 
 ### Document ingestion

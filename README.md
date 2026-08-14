@@ -76,10 +76,47 @@ document workflow must be dependable first.
 
 ## Current status
 
-This is intentionally not a fake Quick Start. There is no installation command
-yet because a fresh clone cannot produce a verified office deliverable. The
-first public implementation milestone is a reproducible local workflow with
-document ingestion, cited generation, review, approval, and editable export.
+The repository now includes a reproducible DSH Web Profile backed by a pinned
+submodule. It proves the runtime and browser surface can be started locally;
+the first Office tool bundle is now wired into the profile. Citation
+provenance, review UX, and approval-aware export remain the next product
+milestones.
+
+## Run the local DSH profile
+
+Requirements: Node.js `^22.19.0` (or `>=24.0.0`) and pnpm `11.7.0`.
+
+```powershell
+git clone https://github.com/HuangYuChuh/dsh-work.git
+cd dsh-work
+git submodule update --init --recursive
+cd packages/deepseek-harness
+pnpm install --ignore-scripts
+pnpm run build
+cd ../..
+cd .dsh/profiles/work
+pnpm install --ignore-scripts
+cd ../../..
+.\scripts\dsh-work.ps1 --dump-config
+.\scripts\dsh-work.ps1 --port 3080
+```
+
+The script sets `DSH_HOME` to the repository's `.dsh` directory and selects
+the tracked `work` profile. `--dump-config` is a useful first check: it shows
+the effective Cordis rows without starting a server. The Web UI prints its
+actual URL; `--port 0` asks Windows to choose a free port.
+
+The first install uses `--ignore-scripts` because the upstream checkout's
+optional Git-hook postinstall is not compatible with a Git submodule. It does
+not skip the build or runtime dependencies. The second install resolves the
+Profile's external Office bundle with `autoInstallPeers: false`, so it reuses
+the DSH checkout's current Cordis and tool registry instead of trying to fetch
+legacy peer packages.
+
+The `work` profile installs `@huiliyi37/dsh-office@0.1.6` as an external DSH
+bundle. It currently exposes `xlsx_*`, `pdf_*`, `pptx_*`, and `docx_*` tools;
+the profile patch keeps all four families explicit so a later product release
+can narrow the tool surface without changing the upstream bundle.
 
 ## Documentation
 
@@ -87,6 +124,7 @@ document ingestion, cited generation, review, approval, and editable export.
 | --- | --- |
 | [Architecture](docs/architecture.md) | How DSH and the office product layer fit together |
 | [Product positioning](docs/product-positioning.md) | Who the product serves and what it will not become |
+| [Ecosystem landscape](docs/landscape.md) | Which DSH office projects we verified and how they differ |
 | [SEO and GEO foundations](docs/seo-geo.md) | How public claims stay discoverable and factual |
 | [llms.txt](llms.txt) | Concise machine-readable project facts |
 

@@ -1,0 +1,7 @@
+- id: dsh-office
+  config:
+    enable:
+      xlsx: true
+      pdf: true
+      ppt: true
+      docx: true

@@ -5,3 +5,11 @@ build/
 .env
 .env.*
 !.env.example
+.dsh/cordis.yml
+.dsh/settings.yaml
+.dsh/.credentials.yaml
+.dsh/sessions/
+.dsh/storages/
+.dsh/profiles/*/node_modules/
+.dsh/profiles/*/cordis.yml
+.dsh/profiles/node_modules/

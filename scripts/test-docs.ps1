@@ -2,7 +2,8 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$markdownFiles = Get-ChildItem -Path $repoRoot -Recurse -File -Filter '*.md'
+$markdownFiles = Get-ChildItem -Path $repoRoot -Recurse -File -Filter '*.md' -ErrorAction SilentlyContinue |
+    Where-Object { $_.FullName -notmatch '[\\/](node_modules|\.git|packages[\\/]deepseek-harness)[\\/]' }
 $brokenLinks = [System.Collections.Generic.List[string]]::new()
 
 foreach ($file in $markdownFiles) {

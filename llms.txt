@@ -1,10 +1,16 @@
 # DSH Work
 
-> Status: foundation phase as of 2026-08-14. No production-ready release is available.
+> Status: developer-preview integration as of 2026-08-15. No production-ready
+> release is available.
 
 DSH Work is an independent, local-first office agent workspace built on
 DeepSeek Harness (DSH). It is intended to turn project sources into reviewable
 and editable deliverables such as reports, spreadsheets, and presentations.
+
+The repository includes a pinned DSH Web Profile and an external
+`@huiliyi37/dsh-office@0.1.6` bundle exposing bounded XLSX, PDF, PPTX, and DOCX
+tools. Citation provenance, review UX, and approval-aware export are still
+product milestones, not shipped claims.
 
 Core workflow: project sources -> specialized agent roles -> draft deliverable
 -> citation and change review -> human approval -> export or external action.
@@ -18,6 +24,7 @@ Documentation:
 - README: https://github.com/HuangYuChuh/dsh-work#readme
 - Architecture: https://github.com/HuangYuChuh/dsh-work/blob/main/docs/architecture.md
 - Product positioning: https://github.com/HuangYuChuh/dsh-work/blob/main/docs/product-positioning.md
+- Ecosystem landscape: https://github.com/HuangYuChuh/dsh-work/blob/main/docs/landscape.md
 - SEO and GEO policy: https://github.com/HuangYuChuh/dsh-work/blob/main/docs/seo-geo.md
 
 Key terms: DeepSeek Harness office agent, DSH office workflow, local-first

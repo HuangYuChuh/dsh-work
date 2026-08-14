@@ -1,7 +1,9 @@
 # Contributing to DSH Work
 
-DSH Work is in its foundation phase. Contributions should make the first
-sources-to-deliverables workflow more reliable, reviewable, or composable.
+DSH Work is an early developer preview. The repository has a runnable DSH Web
+Profile and an external Office tool bundle, while the sources-to-deliverables
+workflow is still being built. Contributions should make that workflow more
+reliable, reviewable, or composable.
 
 ## Before opening a pull request
 
