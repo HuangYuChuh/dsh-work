@@ -118,6 +118,21 @@ bundle. It currently exposes `xlsx_*`, `pdf_*`, `pptx_*`, and `docx_*` tools;
 the profile patch keeps all four families explicit so a later product release
 can narrow the tool surface without changing the upstream bundle.
 
+## Configure model access
+
+Open **Settings -> Models** after the profile starts. API-key providers keep
+their existing key form. The current native OAuth path is exposed for the
+`openai-codex` provider: select **Authorize**, complete the provider-owned
+browser flow, and return to the DSH Work window. The browser receives only
+non-secret progress and status; pi-ai owns the OAuth protocol and the local
+callback at `http://localhost:1455/auth/callback`.
+
+The resulting credential is stored by DSH under `.dsh/.credentials.yaml` and
+is refreshed by pi-ai when needed. It is never written to settings.yaml or
+returned through the Models API. **Sign out** removes the stored OAuth
+credential. OAuth availability is provider-specific; a custom provider still
+needs an API key or its own adapter integration.
+
 ## Documentation
 
 | Document | What it answers |

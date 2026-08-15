@@ -8,6 +8,7 @@ build/
 .dsh/cordis.yml
 .dsh/settings.yaml
 .dsh/.credentials.yaml
+.dsh/*.log
 .dsh/sessions/
 .dsh/storages/
 .dsh/profiles/*/node_modules/

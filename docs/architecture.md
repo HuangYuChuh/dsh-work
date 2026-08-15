@@ -49,6 +49,21 @@ upstream launcher.
 Generated sessions, storage, profile roots, and module links stay ignored;
 the profile manifest and patch layer are the versioned product contract.
 
+### Model authentication boundary
+
+The Models page treats provider authentication as a capability, not as a
+generic API-key field. The pi-ai adapter reports whether a catalog provider
+supports API keys, native OAuth, or both. DSH Work currently exposes the
+provider-owned OAuth flow for `openai-codex` only.
+
+The browser calls the loopback `llm.auth*` API with a provider and an opaque
+login id. It may receive an authorization URL and progress events, but never
+receives an access token, refresh token, or authorization code. pi-ai runs the
+OAuth exchange, owns the localhost callback, and serializes the credential
+through the DSH credential service at `.dsh/.credentials.yaml`. This keeps the
+product UI independent of provider protocol details while preserving the
+runtime's refresh behavior and credential redaction boundary.
+
 This composition gives us a real browser shell, model settings, workspaces,
 sessions, approvals, workflows, subagents, deliverable UI, and Office file
 tools from DSH plus the external plugin. The plugin currently provides bounded

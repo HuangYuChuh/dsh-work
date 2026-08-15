@@ -12,6 +12,11 @@ The repository includes a pinned DSH Web Profile and an external
 tools. Citation provenance, review UX, and approval-aware export are still
 product milestones, not shipped claims.
 
+The Models page currently supports pi-ai native browser OAuth for
+`openai-codex`. OAuth credentials are stored under the DSH home credential
+file and refreshed by pi-ai; the browser never receives token values. Other
+providers remain API-key or adapter-specific integrations.
+
 Core workflow: project sources -> specialized agent roles -> draft deliverable
 -> citation and change review -> human approval -> export or external action.
 
